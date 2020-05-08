@@ -17,8 +17,6 @@ import java.util.List;
  * 生成分页查询方法与分页查询语句.暂时仅适用于MySQL
  * 生成的ethod:List<实体类> selectByPage(@Param("offset") Long offset,@Param("limit") Long limit);
  * 生成的sql:SELECT <include refid="Base_Column_List"/> FROM 表名 LIMIT #{offset}, #{limit}
- *
- * @author linweiyu
  */
 public class PaginationPlugin extends PluginAdapter {
 
@@ -52,6 +50,7 @@ public class PaginationPlugin extends PluginAdapter {
 
     /**
      * 生成 List<实体类> selectByPage(@Param("offset") Long offset,@Param("limit") Long limit); 方法
+     * 生成Mapper接口方法
      */
     @Override
     public boolean clientGenerated(Interface interfaze, IntrospectedTable introspectedTable) {
@@ -93,6 +92,8 @@ public class PaginationPlugin extends PluginAdapter {
     /**
      * 生成如下的分页查询sql语句
      * <select id="selectByPage" resultMap="BaseResultMap"> SELECT <include refid="Base_Column_List"/> FROM 表名 LIMIT #{offset}, #{limit} </select>
+     * <p>
+     * 生成Mapper文件
      */
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
