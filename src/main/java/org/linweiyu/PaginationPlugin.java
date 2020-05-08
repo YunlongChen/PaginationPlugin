@@ -49,12 +49,14 @@ public class PaginationPlugin extends PluginAdapter {
         }
     }
 
+
     /**
      * 生成 List<实体类> selectByPage(@Param("offset") Long offset,@Param("limit") Long limit); 方法
      */
     @Override
-    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        boolean super_result = super.clientGenerated(interfaze, topLevelClass, introspectedTable);
+    public boolean clientGenerated(Interface interfaze, IntrospectedTable introspectedTable) {
+        boolean super_result = super.clientGenerated(interfaze, introspectedTable);
+
         logger.info("--- PaginationPlugin clientGenerated invoke");
 
         if (isGeneratePagination(introspectedTable) && super_result) {
@@ -109,5 +111,4 @@ public class PaginationPlugin extends PluginAdapter {
         }
         return super_result;
     }
-
 }
